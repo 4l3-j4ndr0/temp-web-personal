@@ -327,3 +327,124 @@ function sendMessageForWhatsApp() {
   window.location.href = 'https://wa.me/' + numeroTelefono + '?text=' + mensajeCodificado;
 }
 
+
+// TESTIMONIALS 
+// Detectar el ancho y la altura de la pantalla
+var screenWidth = window.innerWidth;
+var screenHeight = window.innerHeight;
+
+// Determina el número de divs de testimonios basado en el tamaño de la pantalla
+var numTestimonios;
+if (screenWidth > 1200 && screenHeight > 800) {
+  numTestimonios = 3; // Mostrar 3 divs en pantallas grandes
+} else if (screenWidth > 800 && screenHeight > 600) {
+  numTestimonios = 2; // Mostrar 2 divs en pantallas medianas
+} else {
+  numTestimonios = 1; // Mostrar 1 div en pantallas pequeñas
+}
+
+// Configuración de Swiper
+var swiper = new Swiper('.swiper-container', {
+  slidesPerView: numTestimonios,
+  spaceBetween: 10,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+});
+
+// Actualizar el número de divs de testimonios cuando se redimensiona la pantalla
+(function($) {
+
+  "use strict";
+
+  // init Slick Sliders
+  var initSliders = function() {
+    
+    // $('.main-slider').slick({
+    //     autoplay: false,
+    //     autoplaySpeed: 4000,
+    //     fade: true,
+    //     dots: true,
+    //     arrows: false,
+    //  });  
+
+    $('.testimonial-slider').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        dots: true,
+        responsive: [
+          {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: 2,
+            }
+          },
+        {
+          breakpoint: 900,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+          }
+        }
+      ]
+    }); 
+
+    $('.member-slider').slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      autoplay: false,
+      autoplaySpeed: 2000,
+      dots: true,
+      arrows: false,
+      responsive: [
+        {
+          breakpoint: 1300,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,                
+            dots: true,
+          }
+        },
+        {
+          breakpoint: 580,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,                
+            dots: true,
+          }
+        }
+      ]
+    });
+  }
+
+  
+
+  // document ready
+  $(document).ready(function(){
+    initSliders();
+  });
+
+  // window load
+  $(window).load(function() {
+    $(".preloader").fadeOut("slow");
+  })
+
+})(jQuery);
+
+
+
+
